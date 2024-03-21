@@ -4,8 +4,20 @@ import json
 from collections import defaultdict
 from datetime import datetime
 
+"""
+La función q1_time optimiza el tiempo de ejecución de dos maneras:
+1) Utilizamos un diccionario anidado para guardar el número de tweets por usuario y por fecha
+2) Procesa las fechas como si fuesen strings y luego las convierte en un objeto datetime.date 
+    para cumplir con el formato de output solicitado.
+
+
+"""
+
+
 def q1_time(file_path: str) -> List[Tuple[datetime.date, str]]:
+    #Diccionario para guardar tweets por usuario y fecha.
     user_tweet_counts = defaultdict(lambda: defaultdict(int))
+    #Diccionario para guardar tweets for fecha
     tweet_counts_by_date = defaultdict(int)
 
     with open(file_path, 'r') as file:
@@ -17,7 +29,7 @@ def q1_time(file_path: str) -> List[Tuple[datetime.date, str]]:
             user_tweet_counts[date][user] += 1
             tweet_counts_by_date[date] += 1
 
-    # Encontramos las top 10 fechas
+    # Encontramos las top 10 fechas con sort
     top_dates = sorted(tweet_counts_by_date.items(), key=lambda x: x[1], reverse=True)[:10]
 
     result = []
