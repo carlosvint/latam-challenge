@@ -3,6 +3,17 @@ import json
 from collections import Counter
 import re
 
+"""
+La función q2_memory cuenta la frecuencia de emojis en tweets utilizando expresiones regulares para identificarlos.
+Esto permite optimizar la memoria al procesar el archivo línea por línea, reduciendo así la necesidad de almacenar grandes
+cantidades de datos en memoria en un solo momento.
+
+Para realizar esto, la función utiliza una expresión regular (EMOJI_PATTERN) para encontrar emojis en el contenido de los
+tweets. Luego, actualiza un contador para mantener un registro de la frecuencia de cada emoji.
+
+"""
+
+
 EMOJI_PATTERN = re.compile(
     "(["
     "\U0001F1E0-\U0001F1FF"  # flags (iOS)
@@ -20,6 +31,7 @@ EMOJI_PATTERN = re.compile(
 )
 
 def q2_memory(file_path: str) -> List[Tuple[str, int]]:
+    #Inicializar el contador
     emoji_counter = Counter()
 
     with open(file_path, 'r') as file:
@@ -31,6 +43,7 @@ def q2_memory(file_path: str) -> List[Tuple[str, int]]:
             # Actualizar el contador
             emoji_counter.update(emojis)
 
+    #Utilizar el método most_common porque se basa en una estructura de datos heap.
     top_emojis = emoji_counter.most_common(10)
 
     return top_emojis
