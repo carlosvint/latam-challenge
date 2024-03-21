@@ -1,7 +1,7 @@
 # Data Engineer Challenge
 ​
 ## Descripción General
-Bienvenido al desafío para Ingenieros de Datos. En esta ocasión, tendrás la oportunidad de acercarte a parte de la realidad del rol, demostrar tus habilidades y conocimientos en procesamiento de datos con python y diferentes estructuras de datos.
+Esta es mi solución para el challenge de LATAM. De acuerdo a las instrucciones en los archivos .py solo se encuentran las funciones con su explicación. Para una explicación más detallada de la función revisar el archivo challenge.ipynb.
 ​
 ## Instrucciones
 1. Tu solución debe estar en un repositorio público de la plataforma github. 
