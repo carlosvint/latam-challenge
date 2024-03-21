@@ -4,6 +4,18 @@ import re
 from heapq import nlargest
 from collections import defaultdict
 
+"""
+La función q2_time optimiza el tiempo de ejecución al contar la frecuencia de emojis en los tweets. Utiliza una expresión
+regular para encontrar emojis en el contenido de los tweets y luego procesa el archivo línea por línea para evitar cargar
+todo el archivo en memoria de una sola vez. 
+
+Por cada línea, actualiza un diccionario (emoji_counts) que mantiene un registro de la frecuencia de cada emoji encontrado
+en los tweets. Al finalizar el procesamiento del archivo, utiliza la función nlargest para encontrar los 10 emojis más
+comunes basados en sus frecuencias en el diccionario emoji_counts. Esta función internamente utiliza una estructura de heap,
+lo que la hace eficiente en términos de tiempo de ejecución.
+"""
+
+
 # Este es el patron de emojis usualmente utilizado
 EMOJI_PATTERN = re.compile(
     "(["
