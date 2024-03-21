@@ -4,14 +4,26 @@ import json
 from collections import defaultdict
 import heapq
 
+"""
+La función q1_memory optimiza memoria de dos maneras:
+1) Al procesar el archivo linea por linea
+2) Utilizar heap para encontrar fechas con más tweets, así la complejidad en memoria pasa de ser O(n) a O(1).
+
+En terminos generales la función guarda en un diccionario anidado el número de tweets por usuario y por fecha, 
+y en otro diccionario el número total de tweets por fecha. Luego utilizamos un heap para encontrar las 10 
+fechas con más tweets. De esta forma ahorramos tanto tiempo como memoria.
+"""
+
 def q1_memory(file_path: str) -> List[Tuple[datetime.date, str]]:
+    #Guardamos el número de tweets de cada usuario por fecha
     user_tweet_counts = defaultdict(lambda: defaultdict(int))
+    #Guardamos el número de tweets for fecha
     total_tweets_by_date = defaultdict(int)
 
     with open(file_path, 'r') as file:
         for line in file:
             tweet = json.loads(line)
-            date = datetime.strptime(tweet['date'][:10], "%Y-%m-%d").date()
+            date = datetime.strptime(tweet['date'][:10], "%Y-%m-%d").date() #Necesario para obtener el output especificado.
             user = tweet['user']['username']
             user_tweet_counts[date][user] += 1
             total_tweets_by_date[date] += 1
